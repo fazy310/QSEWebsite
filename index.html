@@ -15,7 +15,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,16 +24,59 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#2563eb',
-                        'primary-dark': '#1d4ed8',
-                        secondary: '#f59e0b',
-                        dark: '#1e293b',
-                        light: '#f8fafc',
+                        primary: {
+                            DEFAULT: '#4361EE',
+                            dark: '#3A56D4',
+                            light: '#EFF2FF'
+                        },
+                        secondary: {
+                            DEFAULT: '#3F37C9',
+                            dark: '#3830B5',
+                            light: '#F0F0FF'
+                        },
+                        accent: {
+                            DEFAULT: '#4CC9F0',
+                            dark: '#3AB7DE',
+                            light: '#E6F8FE'
+                        },
+                        dark: '#1A1B25',
+                        light: '#F8F9FA',
+                        gray: {
+                            DEFAULT: '#6B7280',
+                            light: '#E5E7EB',
+                            dark: '#374151'
+                        }
                     },
                     fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        manrope: ['Manrope', 'sans-serif'],
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { 
+                                opacity: '0',
+                                transform: 'translateY(30px)'
+                            },
+                            '100%': { 
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        }
+                    }
                 }
             }
         }
@@ -41,23 +84,20 @@
     
     <style>
         /* Custom Styles */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F8F9FA;
         }
         
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+        .heading-font {
+            font-family: 'Manrope', sans-serif;
         }
         
         .section-title {
             position: relative;
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
         
         .section-title::after {
@@ -68,21 +108,25 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--tw-gradient-stops));
+            background: linear-gradient(90deg, #4361EE, #4CC9F0);
             border-radius: 2px;
         }
         
         .service-card {
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
             z-index: 1;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
         }
         
         .service-card::before {
@@ -92,7 +136,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, #4361EE, #3F37C9);
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -1;
@@ -104,8 +148,8 @@
         
         .service-card:hover .service-icon {
             background-color: white;
-            color: var(--primary);
-            transform: rotateY(180deg);
+            color: #4361EE;
+            transform: scale(1.1);
         }
         
         .service-card:hover h3,
@@ -120,17 +164,20 @@
         
         .project-card {
             transition: all 0.3s ease;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(67, 97, 238, 0.1);
         }
         
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
         }
         
         .project-card img {
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
         }
         
         .project-card:hover img {
@@ -139,9 +186,10 @@
         
         .testimonial-card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             position: relative;
+            border: 1px solid rgba(67, 97, 238, 0.1);
         }
         
         .testimonial-card::before {
@@ -150,15 +198,16 @@
             top: 20px;
             left: 20px;
             font-size: 60px;
-            color: rgba(37, 99, 235, 0.1);
+            color: rgba(67, 97, 238, 0.1);
             font-family: serif;
             line-height: 1;
+            z-index: 0;
         }
         
         .client-image {
             width: 60px;
             height: 60px;
-            border: 3px solid var(--primary);
+            border: 3px solid #4361EE;
         }
         
         .stats-item {
@@ -174,76 +223,42 @@
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            background-color: var(--primary);
-            border-radius: 4px;
+            background-color: #4361EE;
+            border-radius: 6px;
         }
         
         .stats-item:nth-child(2)::before {
-            background-color: var(--secondary);
+            background-color: #3F37C9;
         }
         
         .stats-item:nth-child(3)::before {
-            background-color: #10b981;
+            background-color: #4CC9F0;
         }
         
         .stats-item:nth-child(4)::before {
-            background-color: #8b5cf6;
+            background-color: #7209B7;
         }
         
         .input-field:focus {
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: #4361EE;
         }
         
         .floating-label {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 12px;
+            left: 16px;
             pointer-events: none;
             transition: all 0.3s ease;
             transform-origin: left top;
+            background-color: white;
+            padding: 0 4px;
         }
         
         .input-field:focus + .floating-label,
         .input-field:not(:placeholder-shown) + .floating-label {
-            transform: translateY(-20px) scale(0.8);
-            color: var(--primary);
-        }
-        
-        /* Animation classes */
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-        
-        .animate-delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .animate-delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .animate-delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+            transform: translateY(-20px) scale(0.85);
+            color: #4361EE;
         }
         
         /* WhatsApp Button */
@@ -260,14 +275,14 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
             z-index: 999;
             transition: all 0.3s ease;
         }
         
         .whatsapp-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
         }
         
         /* Cookie Consent Banner */
@@ -276,10 +291,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: var(--dark);
+            background-color: #1A1B25;
             color: white;
             padding: 20px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
             z-index: 1000;
             transform: translateY(100%);
             transition: transform 0.3s ease-out;
@@ -305,32 +320,104 @@
         .modal-content {
             background-color: white;
             margin: 5% auto;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px;
+            border-radius: 16px;
             max-width: 800px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
         
         .close-modal {
-            color: #aaa;
+            color: #6B7280;
             float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.2s ease;
         }
         
         .close-modal:hover {
-            color: var(--dark);
+            color: #1A1B25;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #4361EE, #4CC9F0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Hero image mask */
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+        }
+        
+        /* Underline animation */
+        .underline-animation {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #4361EE, #4CC9F0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        
+        .underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* Pulse animation for CTA */
+        @keyframes pulse-cta {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(67, 97, 238, 0);
+            }
+        }
+        
+        .pulse-cta {
+            animation: pulse-cta 2s infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #F1F1F1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4361EE;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3A56D4;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-light">
     <!-- Preloader -->
-    <div id="preloader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
-        <div class="animate-pulse flex flex-col items-center">
-            <div class="w-20 h-20 bg-primary rounded-lg flex items-center justify-center mb-4">
+    <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
+        <div class="animate-pulse-slow flex flex-col items-center">
+            <div class="w-20 h-20 bg-primary rounded-xl flex items-center justify-center mb-4 shadow-lg">
                 <span class="text-white font-bold text-3xl">QSE</span>
             </div>
             <div class="h-2 bg-gray-200 rounded-full w-32"></div>
@@ -354,11 +441,11 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#" class="flex items-center">
-                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center shadow-md">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-md">
                             <span class="text-white font-bold text-2xl">QSE</span>
                         </div>
                         <div class="ml-3">
-                            <span class="text-xl font-bold text-dark">Quantity Survey & Estimating</span>
+                            <span class="text-xl font-bold text-dark heading-font">Quantity Survey & Estimating</span>
                             <p class="text-xs text-gray-500 font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
                         </div>
                     </a>
@@ -366,23 +453,19 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
+                    <a href="#home" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
                         Home
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#services" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
+                    <a href="#services" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
                         Services
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#about" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
+                    <a href="#about" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
                         About
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#testimonials" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
+                    <a href="#testimonials" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
                         Testimonials
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#contact" class="px-5 py-2 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300">
+                    <a href="#contact" class="px-5 py-2.5 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 hover:shadow-lg">
                         Contact Us
                     </a>
                 </nav>
@@ -415,17 +498,19 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="home" class="relative h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">
-            <div class="absolute inset-0 bg-gradient-to-r from-dark/80 to-dark/30"></div>
+        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/50 to-dark/30"></div>
+            <div class="hero-mask absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+            
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="max-w-2xl text-center animate-slide-up">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Precision in Numbers, <span class="text-secondary">Excellence in Cost</span></h1>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight heading-font">Precision in Numbers, <span class="gradient-text">Excellence in Cost</span></h1>
                     <p class="text-lg md:text-xl text-white/90 mb-8">Professional Quantity Surveying, Project Management & Architectural Services tailored to your construction needs.</p>
                     <div class="flex flex-wrap justify-center gap-4">
-                        <a href="#contact" class="px-8 py-3 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300 flex items-center">
+                        <a href="#contact" class="px-8 py-3.5 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300 flex items-center pulse-cta">
                             Get Started <i class="fas fa-arrow-right ml-2"></i>
                         </a>
-                        <a href="#services" class="px-8 py-3 bg-white/90 text-dark font-medium rounded-lg shadow-lg hover:bg-white transition-all duration-300 flex items-center">
+                        <a href="#services" class="px-8 py-3.5 bg-white/90 text-dark font-medium rounded-lg shadow-lg hover:bg-white transition-all duration-300 flex items-center">
                             Our Services <i class="fas fa-bolt ml-2"></i>
                         </a>
                     </div>
@@ -435,21 +520,21 @@
             <!-- Stats Bar -->
             <div class="absolute bottom-0 left-0 right-0 z-10">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="bg-white rounded-t-xl shadow-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-t-2xl shadow-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1">10+</h3>
+                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">10+</h3>
                             <p class="text-gray-600">Years Experience</p>
                         </div>
                         <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1">250+</h3>
+                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">250+</h3>
                             <p class="text-gray-600">Projects Completed</p>
                         </div>
                         <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1">20+</h3>
+                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">20+</h3>
                             <p class="text-gray-600">Top Specialists</p>
                         </div>
                         <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1">24/7</h3>
+                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">24/7</h3>
                             <p class="text-gray-600">Support Available</p>
                         </div>
                     </div>
@@ -458,116 +543,115 @@
         </section>
         
         <!-- Services Section -->
-   <!-- Services Section -->
-  <section id="services" class="py-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-fade-in">
-        <span class="text-primary font-medium mb-2 inline-block">WHAT WE OFFER</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title">Our Services</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Comprehensive construction services tailored to your specific project requirements.
-        </p>
-      </div>
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-fade-in">
+                    <span class="text-primary font-medium mb-2 inline-block">WHAT WE OFFER</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title heading-font">Our Services</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Comprehensive construction services tailored to your specific project requirements.
+                    </p>
+                </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Service 1: Quantity Surveying -->
-        <div class="service-card bg-white p-8 animate-slide-up animate-delay-1">
-          <div class="service-icon w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto text-white text-2xl">
-            <i class="fas fa-calculator"></i>
-          </div>
-          <h3 class="text-xl font-bold text-dark mb-4 text-center">Quantity Surveying</h3>
-          <ul class="text-gray-600 space-y-3 mb-6">
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>BQ's in NRM, SMM7 Methods</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Contractors Estimates</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Material Takeoff</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Progress Claims</span></li>
-          </ul>
-          <div class="flex flex-col items-center gap-3">
-            <a href="quantity-surveying.html"
-               class="inline-flex items-center px-5 py-2 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary/80 transition-all duration-300">
-              Learn More <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-            <a href="#contact"
-               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
-              Get a Quote <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div>
-        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1: Quantity Surveying -->
+                    <div class="service-card bg-white p-8 animate-slide-up animate-delay-1">
+                        <div class="service-icon w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 mx-auto text-white text-2xl">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-4 text-center heading-font">Quantity Surveying</h3>
+                        <ul class="text-gray-600 space-y-3 mb-6">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>BQ's in NRM, SMM7 Methods</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Contractors Estimates</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Material Takeoff</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Progress Claims</span></li>
+                        </ul>
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="quantity-surveying.html"
+                               class="inline-flex items-center px-5 py-2.5 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary-dark transition-all duration-300">
+                                Learn More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#contact"
+                               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
+                                Get a Quote <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
 
-        <!-- Service 2: Project Management -->
-        <div class="service-card bg-white p-8 animate-slide-up animate-delay-2">
-          <div class="service-icon w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto text-white text-2xl">
-            <i class="fas fa-tasks"></i>
-          </div>
-          <h3 class="text-xl font-bold text-dark mb-4 text-center">Project Management</h3>
-          <ul class="text-gray-600 space-y-3 mb-6">
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Program of Works</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Budget Forecast</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Scheduling Services</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Evaluating &amp; Site Visit</span></li>
-          </ul>
-          <div class="flex flex-col items-center gap-3">
-            <a href="project-management.html"
-               class="inline-flex items-center px-5 py-2 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary/80 transition-all duration-300">
-              Learn More <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-            <a href="#contact"
-               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
-              Get a Quote <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div>
-        </div>
+                    <!-- Service 2: Project Management -->
+                    <div class="service-card bg-white p-8 animate-slide-up animate-delay-2">
+                        <div class="service-icon w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 mx-auto text-white text-2xl">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-4 text-center heading-font">Project Management</h3>
+                        <ul class="text-gray-600 space-y-3 mb-6">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Program of Works</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Budget Forecast</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Scheduling Services</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Evaluating &amp; Site Visit</span></li>
+                        </ul>
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="project-management.html"
+                               class="inline-flex items-center px-5 py-2.5 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary-dark transition-all duration-300">
+                                Learn More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#contact"
+                               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
+                                Get a Quote <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
 
-        <!-- Service 3: Architectural Services -->
-        <div class="service-card bg-white p-8 animate-slide-up animate-delay-3">
-          <div class="service-icon w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto text-white text-2xl">
-            <i class="fas fa-drafting-compass"></i>
-          </div>
-          <h3 class="text-xl font-bold text-dark mb-4 text-center">Architectural Services</h3>
-          <ul class="text-gray-600 space-y-3 mb-6">
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Planning Permission</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Building Regulation</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>3-D Modelling</span></li>
-            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>MEP Drawings</span></li>
-          </ul>
-          <div class="flex flex-col items-center gap-3">
-            <a href="architectural-design.html"
-               class="inline-flex items-center px-5 py-2 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary/80 transition-all duration-300">
-              Learn More <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-            <a href="#contact"
-               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
-              Get a Quote <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div>
-        </div>
-      </div><!--/grid-->
-    </div>
-  </section>
+                    <!-- Service 3: Architectural Services -->
+                    <div class="service-card bg-white p-8 animate-slide-up animate-delay-3">
+                        <div class="service-icon w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-6 mx-auto text-white text-2xl">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-4 text-center heading-font">Architectural Services</h3>
+                        <ul class="text-gray-600 space-y-3 mb-6">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Planning Permission</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>Building Regulation</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>3-D Modelling</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary mr-3 mt-1"></i><span>MEP Drawings</span></li>
+                        </ul>
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="architectural-design.html"
+                               class="inline-flex items-center px-5 py-2.5 bg-secondary text-white font-medium rounded-lg shadow-md hover:bg-secondary-dark transition-all duration-300">
+                                Learn More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#contact"
+                               class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors duration-300">
+                                Get a Quote <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div><!--/grid-->
+            </div>
+        </section>
         
         <!-- About Section -->
         <section id="about" class="py-20 bg-gray-50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="animate-slide-up animate-delay-1">
-                        <div class="relative rounded-xl overflow-hidden shadow-xl">
+                        <div class="relative rounded-2xl overflow-hidden shadow-xl">
                             <img src="service.jpg" alt="QSE Team" class="w-full h-auto">
-                            <div class="absolute -bottom-6 -right-6 bg-primary p-6 rounded-xl shadow-lg">
-                                <h3 class="text-white text-xl font-bold mb-2">Since 2015</h3>
+                            <div class="absolute -bottom-6 -right-6 bg-primary p-6 rounded-2xl shadow-lg">
+                                <h3 class="text-white text-xl font-bold mb-2 heading-font">Since 2015</h3>
                                 <p class="text-white/90">Delivering excellence</p>
                             </div>
                         </div>
                     </div>
                     <div class="animate-slide-up animate-delay-2">
                         <span class="text-primary font-medium mb-2 inline-block">WHO WE ARE</span>
-                        <h3 class="text-2xl font-bold text-dark mb-6">Bringing Vision to Reality, One Project at a Time</h3>
+                        <h3 class="text-2xl font-bold text-dark mb-6 heading-font">Bringing Vision to Reality, One Project at a Time</h3>
                         <p class="text-lg text-gray-600 mb-6">QSE is a full-service construction consultancy specializing in quantity surveying, project management, and architectural services for diverse project types across commercial, residential, and industrial sectors.</p>
                         <p class="text-lg text-gray-600 mb-8">Our team of skilled professionals combines technical expertise with practical experience to deliver exceptional results that maximize value and minimize risk for our clients.</p>
                         
                         <div class="mb-8">
-                            <h4 class="text-xl font-semibold text-dark mb-4">Our Core Principles:</h4>
+                            <h4 class="text-xl font-semibold text-dark mb-4 heading-font">Our Core Principles:</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="flex items-start">
+                                <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
                                     <div class="bg-primary/10 p-2 rounded-lg mr-4">
                                         <i class="fas fa-award text-primary text-xl"></i>
                                     </div>
@@ -576,7 +660,7 @@
                                         <p class="text-gray-600 text-sm">We never compromise our standards</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start">
+                                <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
                                     <div class="bg-primary/10 p-2 rounded-lg mr-4">
                                         <i class="fas fa-bolt text-primary text-xl"></i>
                                     </div>
@@ -585,7 +669,7 @@
                                         <p class="text-gray-600 text-sm">We work faster and smarter</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start">
+                                <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
                                     <div class="bg-primary/10 p-2 rounded-lg mr-4">
                                         <i class="fas fa-crosshairs text-primary text-xl"></i>
                                     </div>
@@ -594,7 +678,7 @@
                                         <p class="text-gray-600 text-sm">We learn from mistakes</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start">
+                                <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
                                     <div class="bg-primary/10 p-2 rounded-lg mr-4">
                                         <i class="fas fa-headset text-primary text-xl"></i>
                                     </div>
@@ -624,7 +708,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 animate-fade-in">
                     <span class="text-primary font-medium mb-2 inline-block">OUR WORK</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title">Types of Projects</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title heading-font">Types of Projects</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">We work across all sectors of the construction industry, delivering tailored solutions.</p>
                 </div>
                 
@@ -635,10 +719,10 @@
                             <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commercial Projects" class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
-                            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white text-xl mb-5">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white text-xl mb-5">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-dark mb-4">Commercial</h3>
+                            <h3 class="text-2xl font-bold text-dark mb-4 heading-font">Commercial</h3>
                             <ul class="text-gray-600 space-y-3">
                                 <li class="flex items-start">
                                     <i class="fas fa-check text-primary mr-3 mt-1"></i>
@@ -666,10 +750,10 @@
                             <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Residential Projects" class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
-                            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white text-xl mb-5">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white text-xl mb-5">
                                 <i class="fas fa-home"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-dark mb-4">Residential</h3>
+                            <h3 class="text-2xl font-bold text-dark mb-4 heading-font">Residential</h3>
                             <ul class="text-gray-600 space-y-3">
                                 <li class="flex items-start">
                                     <i class="fas fa-check text-primary mr-3 mt-1"></i>
@@ -697,10 +781,10 @@
                             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Industrial Projects" class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
-                            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white text-xl mb-5">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white text-xl mb-5">
                                 <i class="fas fa-industry"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-dark mb-4">Industrial</h3>
+                            <h3 class="text-2xl font-bold text-dark mb-4 heading-font">Industrial</h3>
                             <ul class="text-gray-600 space-y-3">
                                 <li class="flex items-start">
                                     <i class="fas fa-check text-primary mr-3 mt-1"></i>
@@ -730,42 +814,42 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 animate-fade-in">
                     <span class="text-primary font-medium mb-2 inline-block">HOW IT WORKS</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title">Our Process</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title heading-font">Our Process</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">Simple steps to get your project started with our expert team.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Step 1 -->
-                    <div class="bg-white p-8 rounded-xl shadow-md text-center animate-slide-up animate-delay-1">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">1</div>
-                        <h3 class="text-xl font-bold text-dark mb-4">Send Plans</h3>
+                    <div class="bg-white p-8 rounded-2xl shadow-md text-center animate-slide-up animate-delay-1">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto heading-font">1</div>
+                        <h3 class="text-xl font-bold text-dark mb-4 heading-font">Send Plans</h3>
                         <p class="text-gray-600">Share your project details, drawings, and specifications with our team.</p>
                     </div>
                     
                     <!-- Step 2 -->
-                    <div class="bg-white p-8 rounded-xl shadow-md text-center animate-slide-up animate-delay-2">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">2</div>
-                        <h3 class="text-xl font-bold text-dark mb-4">Receive Quote</h3>
+                    <div class="bg-white p-8 rounded-2xl shadow-md text-center animate-slide-up animate-delay-2">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto heading-font">2</div>
+                        <h3 class="text-xl font-bold text-dark mb-4 heading-font">Receive Quote</h3>
                         <p class="text-gray-600">We'll analyze your requirements and provide a detailed, competitive quote.</p>
                     </div>
                     
                     <!-- Step 3 -->
-                    <div class="bg-white p-8 rounded-xl shadow-md text-center animate-slide-up animate-delay-3">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">3</div>
-                        <h3 class="text-xl font-bold text-dark mb-4">Make Payment</h3>
+                    <div class="bg-white p-8 rounded-2xl shadow-md text-center animate-slide-up animate-delay-3">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto heading-font">3</div>
+                        <h3 class="text-xl font-bold text-dark mb-4 heading-font">Make Payment</h3>
                         <p class="text-gray-600">Secure our services with a payment to begin work on your project.</p>
                     </div>
                     
                     <!-- Step 4 -->
-                    <div class="bg-white p-8 rounded-xl shadow-md text-center animate-slide-up">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto">4</div>
-                        <h3 class="text-xl font-bold text-dark mb-4">Receive Estimate</h3>
+                    <div class="bg-white p-8 rounded-2xl shadow-md text-center animate-slide-up">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6 mx-auto heading-font">4</div>
+                        <h3 class="text-xl font-bold text-dark mb-4 heading-font">Receive Estimate</h3>
                         <p class="text-gray-600">Get your comprehensive quantity survey or project management plan.</p>
                     </div>
                 </div>
                 
                 <div class="text-center mt-12 animate-fade-in">
-                    <a href="#contact" class="inline-flex items-center px-8 py-3 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300">
+                    <a href="#contact" class="inline-flex items-center px-8 py-3.5 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300 pulse-cta">
                         Start Your Project <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -777,24 +861,24 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 animate-fade-in">
                     <span class="text-primary font-medium mb-2 inline-block">CLIENT FEEDBACK</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title">What Our Clients Say</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title heading-font">What Our Clients Say</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">Hear from our satisfied clients about their experience working with us.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Testimonial 1 -->
                     <div class="testimonial-card p-8 h-full animate-slide-up animate-delay-1">
-                        <div class="flex items-center mb-6">
+                        <div class="flex items-center mb-6 relative z-10">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="client-image rounded-full mr-4">
                             <div>
-                                <h4 class="font-bold text-dark">David Wilson</h4>
+                                <h4 class="font-bold text-dark heading-font">David Wilson</h4>
                                 <p class="text-gray-600">CEO, Wilson Properties</p>
                             </div>
                         </div>
-                        <div class="text-gray-600 mb-6 pl-4">
+                        <div class="text-gray-600 mb-6 pl-4 relative z-10">
                             <p>"QSE transformed our vision into a stunning reality. Their attention to detail and innovative approach to our commercial complex was exceptional. They delivered on time and within budget, making the entire process seamless."</p>
                         </div>
-                        <div class="flex">
+                        <div class="flex relative z-10">
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
@@ -805,17 +889,17 @@
                     
                     <!-- Testimonial 2 -->
                     <div class="testimonial-card p-8 h-full animate-slide-up animate-delay-2">
-                        <div class="flex items-center mb-6">
+                        <div class="flex items-center mb-6 relative z-10">
                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="client-image rounded-full mr-4">
                             <div>
-                                <h4 class="font-bold text-dark">Sarah Johnson</h4>
+                                <h4 class="font-bold text-dark heading-font">Sarah Johnson</h4>
                                 <p class="text-gray-600">Homeowner</p>
                             </div>
                         </div>
-                        <div class="text-gray-600 mb-6 pl-4">
+                        <div class="text-gray-600 mb-6 pl-4 relative z-10">
                             <p>"Working with QSE on our custom home was an absolute pleasure. They listened to our needs, offered creative solutions, and were always available to answer questions. The final result exceeded our expectations in every way."</p>
                         </div>
-                        <div class="flex">
+                        <div class="flex relative z-10">
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
@@ -826,17 +910,17 @@
                     
                     <!-- Testimonial 3 -->
                     <div class="testimonial-card p-8 h-full animate-slide-up animate-delay-3">
-                        <div class="flex items-center mb-6">
+                        <div class="flex items-center mb-6 relative z-10">
                             <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="client-image rounded-full mr-4">
                             <div>
-                                <h4 class="font-bold text-dark">Michael Brown</h4>
+                                <h4 class="font-bold text-dark heading-font">Michael Brown</h4>
                                 <p class="text-gray-600">Director, Industrial Solutions Ltd</p>
                             </div>
                         </div>
-                        <div class="text-gray-600 mb-6 pl-4">
+                        <div class="text-gray-600 mb-6 pl-4 relative z-10">
                             <p>"The quantity surveying services provided by QSE for our new manufacturing facility were outstanding. Their team optimized our costs, resulting in significant savings. Highly recommended!"</p>
                         </div>
-                        <div class="flex">
+                        <div class="flex relative z-10">
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
                             <i class="fas fa-star text-secondary"></i>
@@ -849,10 +933,10 @@
         </section>
         
         <!-- Call to Action -->
-        <section class="py-20 bg-primary">
+        <section class="py-20 bg-gradient-to-r from-primary to-secondary">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto text-center animate-fade-in">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Bring Your Project to Life?</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 heading-font">Ready to Bring Your Project to Life?</h2>
                     <p class="text-xl text-white/90 mb-8">Contact us today to discuss your project with our expert team and receive a free consultation.</p>
                     <div class="flex flex-wrap justify-center gap-4">
                         <a href="#contact" class="px-8 py-4 bg-white text-primary font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition-all duration-300 flex items-center">
@@ -871,18 +955,18 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 animate-fade-in">
                     <span class="text-primary font-medium mb-2 inline-block">GET IN TOUCH</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title">Contact Us</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 section-title heading-font">Contact Us</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">Have a project in mind? Reach out to our team for expert consultation.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <!-- Contact Information -->
                     <div class="animate-slide-up animate-delay-1">
-                        <h3 class="text-2xl font-bold text-dark mb-8">Our Offices</h3>
+                        <h3 class="text-2xl font-bold text-dark mb-8 heading-font">Our Offices</h3>
                         
                         <div class="space-y-8">
                             <!-- Address -->
-                            <div class="flex items-start">
+                            <div class="flex items-start bg-white p-6 rounded-xl shadow-sm">
                                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mr-6 shrink-0">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
@@ -896,7 +980,7 @@
                             </div>
                             
                             <!-- Phone -->
-                            <div class="flex items-start">
+                            <div class="flex items-start bg-white p-6 rounded-xl shadow-sm">
                                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mr-6 shrink-0">
                                     <i class="fas fa-phone"></i>
                                 </div>
@@ -907,7 +991,7 @@
                             </div>
                             
                             <!-- Email -->
-                            <div class="flex items-start">
+                            <div class="flex items-start bg-white p-6 rounded-xl shadow-sm">
                                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mr-6 shrink-0">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -918,7 +1002,7 @@
                             </div>
                             
                             <!-- Hours -->
-                            <div class="flex items-start">
+                            <div class="flex items-start bg-white p-6 rounded-xl shadow-sm">
                                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl mr-6 shrink-0">
                                     <i class="fas fa-clock"></i>
                                 </div>
@@ -932,56 +1016,56 @@
                     
                     <!-- Contact Form -->
                     <div class="animate-slide-up animate-delay-2">
-                        <h3 class="text-2xl font-bold text-dark mb-8">Send Us a Message</h3>
-<form action="https://formsubmit.co/contact@glinedesigns.com" method="POST" class="space-y-6">
-    <!-- Add these hidden input fields for FormSubmit configuration -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="text" name="_honey" style="display:none"> <!-- Honeypot for spam -->
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="relative">
-            <input type="text" id="name" name="name" required 
-                   class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
-                   placeholder=" ">
-            <label for="name" class="floating-label text-gray-600">Your Name*</label>
-        </div>
-        <div class="relative">
-            <input type="email" id="email" name="email" required 
-                   class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
-                   placeholder=" ">
-            <label for="email" class="floating-label text-gray-600">Email Address*</label>
-        </div>
-    </div>
-    <div class="relative">
-        <input type="tel" id="phone" name="phone" 
-               class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
-               placeholder=" ">
-        <label for="phone" class="floating-label text-gray-600">Phone Number</label>
-    </div>
-    <div class="relative">
-        <select id="service" name="service" required
-                class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 appearance-none bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[center_right_1rem]">
-            <option value="" selected disabled hidden></option>
-            <option value="Quantity Surveying">Quantity Surveying</option>
-            <option value="Project Management">Project Management</option>
-            <option value="Architectural Services">Architectural Services</option>
-            <option value="Other">Other</option>
-        </select>
-        <label for="service" class="floating-label text-gray-600">Service Required*</label>
-    </div>
-    <div class="relative">
-        <textarea id="message" name="message" rows="4" required 
-                  class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
-                  placeholder=" "></textarea>
-        <label for="message" class="floating-label text-gray-600">Your Message*</label>
-    </div>
-    <div>
-        <button type="submit" class="w-full px-6 py-4 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 flex items-center justify-center">
-            Send Message <i class="fas fa-paper-plane ml-2"></i>
-        </button>
-    </div>
-</form>
+                        <h3 class="text-2xl font-bold text-dark mb-8 heading-font">Send Us a Message</h3>
+                        <form action="https://formsubmit.co/contact@glinedesigns.com" method="POST" class="space-y-6">
+                            <!-- Add these hidden input fields for FormSubmit configuration -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="text" name="_honey" style="display:none"> <!-- Honeypot for spam -->
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="relative">
+                                    <input type="text" id="name" name="name" required 
+                                           class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                                           placeholder=" ">
+                                    <label for="name" class="floating-label text-gray-600">Your Name*</label>
+                                </div>
+                                <div class="relative">
+                                    <input type="email" id="email" name="email" required 
+                                           class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                                           placeholder=" ">
+                                    <label for="email" class="floating-label text-gray-600">Email Address*</label>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <input type="tel" id="phone" name="phone" 
+                                       class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                                       placeholder=" ">
+                                <label for="phone" class="floating-label text-gray-600">Phone Number</label>
+                            </div>
+                            <div class="relative">
+                                <select id="service" name="service" required
+                                        class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 appearance-none bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[center_right_1rem]">
+                                    <option value="" selected disabled hidden></option>
+                                    <option value="Quantity Surveying">Quantity Surveying</option>
+                                    <option value="Project Management">Project Management</option>
+                                    <option value="Architectural Services">Architectural Services</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <label for="service" class="floating-label text-gray-600">Service Required*</label>
+                            </div>
+                            <div class="relative">
+                                <textarea id="message" name="message" rows="4" required 
+                                          class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                                          placeholder=" "></textarea>
+                                <label for="message" class="floating-label text-gray-600">Your Message*</label>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full px-6 py-4 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 flex items-center justify-center">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
                         <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
                             Thank you for your message! We'll get back to you soon.
                         </div>
@@ -1007,11 +1091,11 @@
                 <!-- About Column -->
                 <div>
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center shadow-md">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-md">
                             <span class="text-white font-bold text-xl">QSE</span>
                         </div>
                         <div class="ml-3">
-                            <span class="text-xl font-bold">Quantity Survey & Estimating</span>
+                            <span class="text-xl font-bold heading-font">Quantity Survey & Estimating</span>
                             <p class="text-xs text-gray-400 font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
                         </div>
                     </div>
@@ -1034,7 +1118,7 @@
                 
                 <!-- Quick Links Column -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <h3 class="text-lg font-semibold mb-6 heading-font">Quick Links</h3>
                     <ul class="space-y-3 text-gray-400">
                         <li>
                             <a href="#home" class="hover:text-white transition-colors duration-300 flex items-center">
@@ -1066,7 +1150,7 @@
                 
                 <!-- Services Column -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">Services</h3>
+                    <h3 class="text-lg font-semibold mb-6 heading-font">Services</h3>
                     <ul class="space-y-3 text-gray-400">
                         <li>
                             <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
@@ -1098,7 +1182,7 @@
                 
                 <!-- Newsletter Column -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">Legal</h3>
+                    <h3 class="text-lg font-semibold mb-6 heading-font">Legal</h3>
                     <ul class="space-y-3 text-gray-400">
                         <li>
                             <a href="#" id="privacyPolicyLink" class="hover:text-white transition-colors duration-300 flex items-center">
@@ -1134,12 +1218,12 @@
     <div id="privacyModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 class="text-2xl font-bold text-dark mb-6">Privacy Policy</h2>
+            <h2 class="text-2xl font-bold text-dark mb-6 heading-font">Privacy Policy</h2>
             <div class="prose max-w-none text-gray-600">
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">1. Introduction</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">1. Introduction</h3>
                 <p>Welcome to Quantity Survey & Estimating ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at contact@glinedesigns.com.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">2. Information We Collect</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">2. Information We Collect</h3>
                 <p>We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our services, when you participate in activities on our website, or otherwise when you contact us.</p>
                 <p>The personal information we collect may include:</p>
                 <ul class="list-disc pl-6 space-y-2 mt-2">
@@ -1149,7 +1233,7 @@
                     <li>Any other information you choose to provide</li>
                 </ul>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">3. How We Use Your Information</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">3. How We Use Your Information</h3>
                 <p>We use the information we collect or receive:</p>
                 <ul class="list-disc pl-6 space-y-2 mt-2">
                     <li>To provide and maintain our services</li>
@@ -1160,7 +1244,7 @@
                     <li>For other business purposes such as data analysis, identifying usage trends, etc.</li>
                 </ul>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">4. Cookies and Tracking Technologies</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">4. Cookies and Tracking Technologies</h3>
                 <p>We may use cookies and similar tracking technologies to access or store information. Most web browsers are set to accept cookies by default. You can usually choose to set your browser to remove or reject cookies, but this may affect certain features or services of our website.</p>
                 <p>We use cookies for the following purposes:</p>
                 <ul class="list-disc pl-6 space-y-2 mt-2">
@@ -1169,10 +1253,10 @@
                     <li>To store your preferences</li>
                 </ul>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">5. Data Security</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">5. Data Security</h3>
                 <p>We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">6. Contact Us</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">6. Contact Us</h3>
                 <p>If you have questions or comments about this policy, you may email us at contact@glinedesigns.com or by post to:</p>
                 <p class="mt-2">
                     Quantity Survey & Estimating<br>
@@ -1188,27 +1272,27 @@
     <div id="termsModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 class="text-2xl font-bold text-dark mb-6">Terms & Conditions</h2>
+            <h2 class="text-2xl font-bold text-dark mb-6 heading-font">Terms & Conditions</h2>
             <div class="prose max-w-none text-gray-600">
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">1. Introduction</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">1. Introduction</h3>
                 <p>These Terms and Conditions govern your use of the Quantity Survey & Estimating website and the services we provide. By accessing or using our website and services, you agree to be bound by these Terms.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">2. Intellectual Property</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">2. Intellectual Property</h3>
                 <p>The content, layout, design, data, and graphics on this website are protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">3. Use of Website</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">3. Use of Website</h3>
                 <p>You agree to use this website only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the website.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">4. Services</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">4. Services</h3>
                 <p>All quantity surveying, project management, and architectural services provided by Quantity Survey & Estimating are subject to separate service agreements that will outline the scope of work, fees, and other terms specific to each project.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">5. Limitation of Liability</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">5. Limitation of Liability</h3>
                 <p>Quantity Survey & Estimating shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your access to or use of, or inability to access or use, the website or services.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">6. Governing Law</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">6. Governing Law</h3>
                 <p>These Terms shall be governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the English courts.</p>
                 
-                <h3 class="text-xl font-bold text-dark mb-4 mt-6">7. Contact Information</h3>
+                <h3 class="text-xl font-bold text-dark mb-4 mt-6 heading-font">7. Contact Information</h3>
                 <p>For any questions about these Terms, please contact us at:</p>
                 <p class="mt-2">
                     Quantity Survey & Estimating<br>
@@ -1309,7 +1393,9 @@
                 
                 if (elementPosition < windowHeight - 100) {
                     element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    if (element.classList.contains('animate-slide-up')) {
+                        element.style.transform = 'translateY(0)';
+                    }
                 }
             });
         };
@@ -1415,11 +1501,8 @@
         });
 
         // Contact Form Submission
-
         const formSuccess = document.getElementById('formSuccess');
         const formError = document.getElementById('formError');
     </script>
 </body>
 </html>
-
-
