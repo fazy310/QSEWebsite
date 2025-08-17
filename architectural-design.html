@@ -15,45 +15,48 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2563eb',
-                        'primary-dark': '#1d4ed8',
-                        secondary: '#f59e0b',
-                        dark: '#1e293b',
-                        light: '#f8fafc',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
-                    },
-                }
-            }
+  tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#059669',        // Emerald green
+                'primary-dark': '#047857', // Darker emerald
+                secondary: '#DC2626',      // Red
+                accent: '#7C3AED',         // Purple
+                dark: '#0F172A',           // Darker slate
+                light: '#F1F5F9',          // Lighter gray
+            },
+            fontFamily: {
+                nunito: ['Nunito', 'sans-serif'],
+                space: ['Space Grotesk', 'sans-serif'],
+            },
         }
+    }
+}
     </script>
     
     <style>
         /* Same styles as index.html */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
+:root {
+    --primary: #059669;
+    --primary-dark: #047857;
+    --secondary: #DC2626;
+    --accent: #7C3AED;
+    --dark: #0F172A;
+    --light: #F1F5F9;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.space-font {
+    font-family: 'Space Grotesk', sans-serif;
+}
         .section-title {
             position: relative;
             display: inline-block;
@@ -269,6 +272,56 @@
             transform: scale(1.1);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
+        /* Carousel Styles */
+/* Hero Carousel Styles */
+.hero-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Active navigation states */
+/* Active navigation states - Updated */
+.nav-link.active {
+    background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+    color: white !important;
+}
+
+.mobile-nav-link.active {
+    background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+    color: white !important;
+}
     </style>
 </head>
 <body class="bg-gray-50">
@@ -293,85 +346,104 @@
     </a>
 
     <!-- Header -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4 md:py-5">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center">
-                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center shadow-md">
-                            <span class="text-white font-bold text-2xl">QSE</span>
-                        </div>
-                        <div class="ml-3">
-                            <span class="text-xl font-bold text-dark">Quantity Survey & Estimating</span>
-                            <p class="text-xs text-gray-500 font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="index.html" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
-                        Home
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="index.html#services" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
-                        Services
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="index.html#about" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
-                        About
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="index.html#testimonials" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative group">
-                        Testimonials
-                        <span class="absolute left-0 bottom-0 h-0.5 bg-primary w-0 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="index.html#contact" class="px-5 py-2 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300">
-                        Contact Us
-                    </a>
-                </nav>
-                
-                <!-- Mobile menu button -->
-                <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-dark focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
+<header class="sticky top-0 z-40 bg-white shadow-lg border-b-4 border-primary">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-20">
+            <!-- Keep original logo -->
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="logo.png" alt="QSE Logo" class="w-12 h-12 rounded-xl shadow-md">
+                    <div class="ml-3">
+                        <span class="text-xl font-bold text-dark space-font">Quantity Survey & Estimating</span>
+                        <p class="text-xs text-primary font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Navigation with pill-style buttons -->
+            <nav class="hidden lg:flex items-center space-x-2">
+    <a href="index.html" class="nav-link px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium" data-page="home">Home</a>
+    <a href="index.html#services" class="nav-link px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium" data-page="services">Services</a>
+    <a href="index.html#about" class="nav-link px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium" data-page="about">About</a>
+    <a href="index.html#testimonials" class="nav-link px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium" data-page="testimonials">Testimonials</a>
+    <a href="index.html#contact" class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">Contact Us </a>
+            </nav>
+            
+            <!-- Modern hamburger menu -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-        
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl absolute w-full z-50">
-            <div class="px-4 py-6 space-y-4">
-                <a href="index.html" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Home</a>
-                <a href="index.html#services" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Services</a>
-                <a href="index.html#about" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">About</a>
-                <a href="index.html#testimonials" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Testimonials</a>
-                <a href="index.html#contact" class="block px-4 py-3 bg-primary text-white font-medium rounded-lg text-center hover:bg-primary-dark transition-all duration-300">
-                    Contact Us
+    </div>
+    
+    <!-- Mobile Menu with glassmorphism effect -->
+ <div id="mobile-menu" class="hidden lg:hidden">
+    <div class="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-lg border-t border-primary/20">
+        <div class="px-6 py-6 space-y-3">
+            <a href="index.html" class="mobile-nav-link block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300" data-page="home">Home</a>
+            <a href="index.html#services" class="mobile-nav-link block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300" data-page="services">Services</a>
+            <a href="index.html#about" class="mobile-nav-link block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300" data-page="about">About</a>
+            <a href="index.html#testimonials" class="mobile-nav-link block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300" data-page="testimonials">Testimonials</a>
+            <a href="index.html#contact" class="block px-4 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl text-center shadow-lg">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</div>
+</header>
+    <!-- Main Content -->
+    <main>
+
+        <!-- Service Hero Section with Carousel -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Image Carousel Background -->
+    <div class="hero-carousel">
+        <div class="carousel-slide active" style="background-image: url('architeruclar_Service.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('carousel.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('service.jpg')"></div>
+    </div>
+    
+    <!-- Simple Dark Overlay -->
+    <div class="absolute inset-0 bg-black/60 z-10"></div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-6 relative z-20">
+        <div class="max-w-4xl mx-auto text-center space-y-12">
+            <!-- Main Heading -->
+            <h1 class="text-6xl lg:text-8xl font-bold text-white space-font leading-tight">
+                Architectural
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Design</span>
+                Services
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+                Innovative, functional spaces that elevate communities and exceed client aspirations
+            </p>
+            
+            <!-- Single CTA Button -->
+            <div class="pt-8">
+                <a href="#contact" class="inline-flex items-center px-12 py-5 bg-gradient-to-r from-emerald-600 to-blue-600 text-white text-xl font-semibold rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    Get a Quote
+                    <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
                 </a>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Service Hero Section -->
-        <section class="relative py-32 bg-[url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center">
-            <div class="absolute inset-0 bg-gradient-to-r from-dark/80 to-dark/30"></div>
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="max-w-2xl animate-slide-up">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Architectural Design Services</h1>
-                    <p class="text-lg md:text-xl text-white/90 mb-8">Innovative, functional spaces that elevate communities and exceed client aspirations.</p>
-                    <a href="#contact" class="inline-flex items-center px-8 py-3 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300">
-                        Get a Quote <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+    </div>
+    
+    <!-- Simple Carousel Indicators -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-4">
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator active" data-slide="0"></button>
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator" data-slide="1"></button>
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator" data-slide="2"></button>
+    </div>
+</section>
 
         <!-- Service Details Section -->
         <section class="py-20 bg-white">
@@ -605,117 +677,100 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-16 pb-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- About Column -->
+ <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full -translate-x-48 -translate-y-48"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-accent/10 to-primary/10 rounded-full translate-x-40 translate-y-40"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <!-- Main footer content in centered layout -->
+        <div class="text-center mb-16">
+            <div class="flex items-center justify-center mb-6">
+                <img src="logo.png" alt="QSE Logo" class="w-16 h-16 rounded-xl shadow-lg mr-4">
                 <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center shadow-md">
-                            <span class="text-white font-bold text-xl">QSE</span>
-                        </div>
-                        <div class="ml-3">
-                            <span class="text-xl font-bold">QS Experts</span>
-                            <p class="text-xs text-gray-400 font-medium">INNOVATIVE DESIGN SOLUTIONS</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-6">Professional Architectural Design Services for projects across the UK, based in Manchester.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Contact Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6">Head Office</h3>
-                    <address class="not-italic text-gray-400 space-y-3">
-                        <p>3 Hardman Square<br>Manchester M3 3EB<br>United Kingdom</p>
-                        <p class="mt-4">
-                            <a href="tel:+44 737 509 7407" class="hover:text-white transition-colors duration-300 flex items-start">
-                                <i class="fas fa-phone text-primary mr-3 mt-1"></i>
-                                <span>+44 737 509 7407</span>
-                            </a>
-                        </p>
-                        <p>
-                            <a href="mailto:contact@glinedesigns.com" class="hover:text-white transition-colors duration-300 flex items-start">
-                                <i class="fas fa-envelope text-primary mr-3 mt-1"></i>
-                                <span>contact@glinedesigns.com</span>
-                            </a>
-                        </p>
-                        <p class="mt-4">Mon – Fri · 09 – 18 GMT</p>
-                    </address>
-                </div>
-                
-                <!-- Services Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6">Architectural Services</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>
-                            <a href="#" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Planning Applications
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Building Regulations
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> 3D Visualization
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> MEP Coordination
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Quick Links Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>
-                            <a href="index.html" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#portfolio" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#contact" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Contact
-                            </a>
-                        </li>
-                    </ul>
+                    <h2 class="text-3xl font-bold space-font">QSE</h2>
+                    <p class="text-primary font-medium">Building Excellence, Delivering Precision</p>
                 </div>
             </div>
-            
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 QS Experts Ltd. Registered in England & Wales · No. 08123456</p>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                Professional construction consultancy services across the UK, delivering precision in every project.
+            </p>
+        </div>
+
+        <!-- Services and Links in horizontal layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <!-- Services Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Our Services</h3>
+                <div class="space-y-3">
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Quantity Surveying
+                    </a>
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Project Management
+                    </a>
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Architectural Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Quick Links</h3>
+                <div class="space-y-3">
+                    <a href="#home" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Home
+                    </a>
+                    <a href="#about" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        About Us
+                    </a>
+                    <a href="#testimonials" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Testimonials
+                    </a>
+                    <a href="#contact" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Contact
+                    </a>
+                </div>
+            </div>
+
+            <!-- Legal & Contact Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Legal & Contact</h3>
+                <div class="space-y-3 mb-6">
+                    <a href="#" id="privacyPolicyLink" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Privacy Policy
+                    </a>
+                    <a href="#" id="termsConditionsLink" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Terms & Conditions
+                    </a>
+                </div>
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
 
+        <!-- Copyright section -->
+        <div class="text-center pt-8 border-t border-white/10">
+            <p class="text-gray-400 mb-4">&copy; 2023 Quantity Survey & Estimating. All rights reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="#" id="privacyPolicyLink2" class="text-gray-400 hover:text-primary transition-colors duration-300">Privacy</a>
+                <a href="#" id="termsConditionsLink2" class="text-gray-400 hover:text-primary transition-colors duration-300">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">Sitemap</a>
+            </div>
+        </div>
+    </div>
+</footer>
     <!-- Scripts -->
     <script>
         // Preloader
@@ -806,6 +861,40 @@
         
         // Run on scroll
         window.addEventListener('scroll', animateOnScroll);
+
+        // Carousel functionality
+// Carousel functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const indicators = document.querySelectorAll('.carousel-indicator');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    indicators[index].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Auto-advance slides every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Click indicators to change slides
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+    });
+});
+
+
+// Navigation Active State Management
     </script>
 </body>
 </html>

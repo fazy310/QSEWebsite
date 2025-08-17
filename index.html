@@ -15,83 +15,38 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#4361EE',
-                            dark: '#3A56D4',
-                            light: '#EFF2FF'
-                        },
-                        secondary: {
-                            DEFAULT: '#3F37C9',
-                            dark: '#3830B5',
-                            light: '#F0F0FF'
-                        },
-                        accent: {
-                            DEFAULT: '#4CC9F0',
-                            dark: '#3AB7DE',
-                            light: '#E6F8FE'
-                        },
-                        dark: '#1A1B25',
-                        light: '#F8F9FA',
-                        gray: {
-                            DEFAULT: '#6B7280',
-                            light: '#E5E7EB',
-                            dark: '#374151'
-                        }
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                        manrope: ['Manrope', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.8s ease-in-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { 
-                                opacity: '0',
-                                transform: 'translateY(30px)'
-                            },
-                            '100%': { 
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' }
-                        }
-                    }
-                }
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                primary: '#059669',        // Emerald green
+                'primary-dark': '#047857', // Darker emerald
+                secondary: '#DC2626',      // Red
+                accent: '#7C3AED',         // Purple  
+                dark: '#0F172A',           // Darker slate
+                light: '#F1F5F9',          // Lighter gray
             }
         }
+    }
+}
     </script>
     
     <style>
+
+        
         /* Custom Styles */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Nunito', sans-serif;
             scroll-behavior: smooth;
             background-color: #F8F9FA;
         }
         
         .heading-font {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
         
         .section-title {
@@ -99,7 +54,7 @@
             display: inline-block;
             padding-bottom: 12px;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -113,22 +68,19 @@
             border-radius: 2px;
         }
         
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(67, 97, 238, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
+.service-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
         
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
-            border-color: rgba(67, 97, 238, 0.3);
-        }
-        
+.service-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-12px) rotateX(5deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
         .service-card::before {
             content: '';
             position: absolute;
@@ -389,7 +341,30 @@
                 box-shadow: 0 0 0 12px rgba(67, 97, 238, 0);
             }
         }
-        
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(5deg); 
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+        @keyframes slideInFromLeft {
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes scaleIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.animate-slide-left { animation: slideInFromLeft 0.8s ease-out; }
+.animate-scale-in { animation: scaleIn 0.6s ease-out; }
+
         .pulse-cta {
             animation: pulse-cta 2s infinite;
         }
@@ -411,6 +386,48 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3A56D4;
         }
+
+        /* Enhanced Carousel Styles */
+.hero-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.8);
+}
     </style>
 </head>
 <body class="bg-light">
@@ -435,113 +452,140 @@
     </a>
 
     <!-- Header -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4 md:py-5">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="#" class="flex items-center">
-                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-md">
-                            <span class="text-white font-bold text-2xl">QSE</span>
-                        </div>
-                        <div class="ml-3">
-                            <span class="text-xl font-bold text-dark heading-font">Quantity Survey & Estimating</span>
-                            <p class="text-xs text-gray-500 font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
-                        Home
-                    </a>
-                    <a href="#services" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
-                        Services
-                    </a>
-                    <a href="#about" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
-                        About
-                    </a>
-                    <a href="#testimonials" class="text-dark font-medium hover:text-primary transition-colors duration-300 relative underline-animation">
-                        Testimonials
-                    </a>
-                    <a href="#contact" class="px-5 py-2.5 bg-primary text-white font-medium rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 hover:shadow-lg">
-                        Contact Us
-                    </a>
-                </nav>
-                
-                <!-- Mobile menu button -->
-                <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-dark focus:outline-none">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
+<header class="sticky top-0 z-40 bg-white shadow-lg border-b-4 border-primary">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-20">
+            <!-- Keep original logo -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <img src="logo.png" alt="QSE Logo" class="w-12 h-12 rounded-xl shadow-md">
+                    <div class="ml-3">
+                        <span class="text-xl font-bold text-dark space-font">Quantity Survey & Estimating</span>
+                        <p class="text-xs text-primary font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Navigation with pill-style buttons -->
+            <nav class="hidden lg:flex items-center space-x-2">
+                <a href="#home" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium">Home</a>
+                <a href="#services" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium">Services</a>
+                <a href="#about" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium">About</a>
+                <a href="#testimonials" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium">Testimonials</a>
+                <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    Contact Us
+                </a>
+            </nav>
+            
+            <!-- Modern hamburger menu -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-        
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl absolute w-full z-50">
-            <div class="px-4 py-6 space-y-4">
-                <a href="#home" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Home</a>
-                <a href="#services" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Services</a>
-                <a href="#about" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">About</a>
-                <a href="#testimonials" class="block px-4 py-3 text-dark font-medium hover:bg-gray-50 rounded-lg transition-colors duration-300">Testimonials</a>
-                <a href="#contact" class="block px-4 py-3 bg-primary text-white font-medium rounded-lg text-center hover:bg-primary-dark transition-all duration-300">
+    </div>
+    
+    <!-- Mobile Menu with glassmorphism effect -->
+    <div id="mobile-menu" class="hidden lg:hidden">
+        <div class="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-lg border-t border-primary/20">
+            <div class="px-6 py-6 space-y-3">
+                <a href="#home" class="block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300">Home</a>
+                <a href="#services" class="block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300">Services</a>
+                <a href="#about" class="block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300">About</a>
+                <a href="#testimonials" class="block px-4 py-3 text-dark font-medium bg-white/50 rounded-xl hover:bg-white transition-all duration-300">Testimonials</a>
+                <a href="#contact" class="block px-4 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl text-center shadow-lg">
                     Contact Us
                 </a>
             </div>
         </div>
-    </header>
-
+    </div>
+</header>
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/50 to-dark/30"></div>
-            <div class="hero-mask absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+         <!-- Hero Section - Clean Minimal Design -->
+<section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Image Carousel Background -->
+    <div class="hero-carousel">
+        <!-- Image 1 -->
+        <div class="hero-slide active" 
+             style="background-image: url('carousel.jpg')">
+        </div>
+        <!-- Image 2 -->
+        <div class="hero-slide" 
+             style="background-image: url('carousel2.jpg')">
+        </div>
+        <!-- Image 3 -->
+        <div class="hero-slide" 
+             style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')">
+        </div>
+    </div>
+    
+    <!-- Simple Dark Overlay -->
+    <div class="absolute inset-0 bg-black/60 z-10"></div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-6 relative z-20">
+        <div class="max-w-4xl mx-auto text-center space-y-12">
+            <!-- Main Heading -->
+            <h1 class="text-6xl lg:text-8xl font-bold text-white space-font leading-tight">
+                Building
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Tomorrow</span>
+                Today
+            </h1>
             
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="max-w-2xl text-center animate-slide-up">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight heading-font">Precision in Numbers, <span class="gradient-text">Excellence in Cost</span></h1>
-                    <p class="text-lg md:text-xl text-white/90 mb-8">Professional Quantity Surveying, Project Management & Architectural Services tailored to your construction needs.</p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="#contact" class="px-8 py-3.5 bg-primary text-white font-medium rounded-lg shadow-lg hover:bg-primary-dark transition-all duration-300 flex items-center pulse-cta">
-                            Get Started <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        <a href="#services" class="px-8 py-3.5 bg-white/90 text-dark font-medium rounded-lg shadow-lg hover:bg-white transition-all duration-300 flex items-center">
-                            Our Services <i class="fas fa-bolt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <!-- Subtitle -->
+            <p class="text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+                Professional construction consultancy services across the UK
+            </p>
             
-            <!-- Stats Bar -->
-            <div class="absolute bottom-0 left-0 right-0 z-10">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="bg-white rounded-t-2xl shadow-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">10+</h3>
-                            <p class="text-gray-600">Years Experience</p>
-                        </div>
-                        <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">250+</h3>
-                            <p class="text-gray-600">Projects Completed</p>
-                        </div>
-                        <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">20+</h3>
-                            <p class="text-gray-600">Top Specialists</p>
-                        </div>
-                        <div class="stats-item">
-                            <h3 class="text-3xl font-bold text-dark mb-1 heading-font">24/7</h3>
-                            <p class="text-gray-600">Support Available</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Single CTA Button -->
+            <div class="pt-8">
+                <a href="#contact" class="inline-flex items-center px-12 py-5 bg-gradient-to-r from-emerald-600 to-blue-600 text-white text-xl font-semibold rounded-2xl shadow-2xl hover:scale-105 transition-all duration-300">
+                    Start Your Project
+                    <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
             </div>
-        </section>
-        
+        </div>
+    </div>
+    
+    <!-- Simple Carousel Indicators -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-4">
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator active" data-slide="0"></button>
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator" data-slide="1"></button>
+        <button class="w-3 h-3 bg-white/50 rounded-full hover:bg-white transition-all carousel-indicator" data-slide="2"></button>
+    </div>
+</section>
+
+<!-- Stats Section - Moved Outside Hero -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-5xl font-bold text-emerald-600 space-font mb-2">10+</div>
+                <div class="text-gray-600">Years Experience</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-blue-600 space-font mb-2">250+</div>
+                <div class="text-gray-600">Projects Completed</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-purple-600 space-font mb-2">20+</div>
+                <div class="text-gray-600">Top Specialists</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-emerald-600 space-font mb-2">24/7</div>
+                <div class="text-gray-600">Support Available</div>
+            </div>
+        </div>
+    </div>
+</section>
+
         <!-- Services Section -->
         <section id="services" class="py-20 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1085,134 +1129,100 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-16 pb-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- About Column -->
+  <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full -translate-x-48 -translate-y-48"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-accent/10 to-primary/10 rounded-full translate-x-40 translate-y-40"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <!-- Main footer content in centered layout -->
+        <div class="text-center mb-16">
+            <div class="flex items-center justify-center mb-6">
+                <img src="logo.png" alt="QSE Logo" class="w-16 h-16 rounded-xl shadow-lg mr-4">
                 <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-md">
-                            <span class="text-white font-bold text-xl">QSE</span>
-                        </div>
-                        <div class="ml-3">
-                            <span class="text-xl font-bold heading-font">Quantity Survey & Estimating</span>
-                            <p class="text-xs text-gray-400 font-medium">PRECISION IN NUMBERS, EXCELLENCE IN COST</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-6">Professional Quantity Surveying, Project Management & Architectural Services for construction projects in Birmingham and across the UK.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6 heading-font">Quick Links</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>
-                            <a href="#home" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#about" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#testimonials" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Testimonials
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Contact
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Services Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6 heading-font">Services</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Quantity Surveying
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Project Management
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Architectural Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Progress Claims
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#services" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Material Takeoff
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Newsletter Column -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-6 heading-font">Legal</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>
-                            <a href="#" id="privacyPolicyLink" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" id="termsConditionsLink" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Terms & Conditions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-white transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs text-primary mr-2"></i> Cookie Policy
-                            </a>
-                        </li>
-                    </ul>
+                    <h2 class="text-3xl font-bold space-font">QSE</h2>
+                    <p class="text-primary font-medium">Building Excellence, Delivering Precision</p>
                 </div>
             </div>
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2023 Quantity Survey & Estimating. All rights reserved.</p>
-                <div class="mt-4 flex justify-center space-x-6">
-                    <a href="#" id="privacyPolicyLink2" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" id="termsConditionsLink2" class="hover:text-white transition-colors duration-300">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors duration-300">Sitemap</a>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                Professional construction consultancy services across the UK, delivering precision in every project.
+            </p>
+        </div>
+
+        <!-- Services and Links in horizontal layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <!-- Services Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Our Services</h3>
+                <div class="space-y-3">
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Quantity Surveying
+                    </a>
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Project Management
+                    </a>
+                    <a href="#services" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Architectural Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Quick Links</h3>
+                <div class="space-y-3">
+                    <a href="#home" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Home
+                    </a>
+                    <a href="#about" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        About Us
+                    </a>
+                    <a href="#testimonials" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Testimonials
+                    </a>
+                    <a href="#contact" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Contact
+                    </a>
+                </div>
+            </div>
+
+            <!-- Legal & Contact Card -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold mb-6 text-center space-font">Legal & Contact</h3>
+                <div class="space-y-3 mb-6">
+                    <a href="#" id="privacyPolicyLink" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Privacy Policy
+                    </a>
+                    <a href="#" id="termsConditionsLink" class="block px-4 py-2 bg-white/5 rounded-lg hover:bg-primary/20 transition-all duration-300 text-center">
+                        Terms & Conditions
+                    </a>
+                </div>
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Copyright section -->
+        <div class="text-center pt-8 border-t border-white/10">
+            <p class="text-gray-400 mb-4">&copy; 2023 Quantity Survey & Estimating. All rights reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="#" id="privacyPolicyLink2" class="text-gray-400 hover:text-primary transition-colors duration-300">Privacy</a>
+                <a href="#" id="termsConditionsLink2" class="text-gray-400 hover:text-primary transition-colors duration-300">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">Sitemap</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- Privacy Policy Modal -->
     <div id="privacyModal" class="modal">
@@ -1323,186 +1333,284 @@
     </div>
 
     <!-- Scripts -->
-    <script>
-        // Preloader
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            preloader.style.visibility = 'hidden';
-            setTimeout(() => {
-                preloader.remove();
-            }, 500);
-        });
+<script>
+// === CAROUSEL FUNCTIONALITY ===
+let slides, indicators, currentSlide = 0, slideInterval = null;
 
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+function initializeCarousel() {
+    slides = document.querySelectorAll('.hero-slide');
+    indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (slides.length > 0 && indicators.length > 0) {
+        console.log('Carousel initialized with', slides.length, 'slides');
         
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        function showSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            
+            // Remove active class from all slides and indicators
+            slides.forEach((slide) => slide.classList.remove('active'));
+            indicators.forEach((indicator) => indicator.classList.remove('active'));
+            
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentSlide = index;
+            console.log('Showing slide:', index);
+        }
+
+        function nextSlide() {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }
+
+        function startCarousel() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000);
+            console.log('Carousel started');
+        }
+
+        function stopCarousel() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+            console.log('Carousel stopped');
+        }
+
+        // Initialize first slide
+        showSlide(0);
         
-        // Close mobile menu when clicking on a link
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Start carousel after a short delay
+        setTimeout(() => {
+            startCarousel();
+        }, 1000);
+
+        // Indicator clicks
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+                stopCarousel();
+                setTimeout(startCarousel, 8000);
             });
         });
-        
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
 
-        // Scroll to Top Button
-        const scrollToTopButton = document.getElementById('scrollToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopButton.classList.remove('opacity-0', 'invisible');
-                scrollToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                scrollToTopButton.classList.remove('opacity-100', 'visible');
-                scrollToTopButton.classList.add('opacity-0', 'invisible');
+        // Hover pause (optional - you can remove this if you want it to always run)
+        const heroSection = document.querySelector('#home');
+        if (heroSection) {
+            heroSection.addEventListener('mouseenter', stopCarousel);
+            heroSection.addEventListener('mouseleave', startCarousel);
+        }
+
+        // Ensure carousel keeps running even when tab loses focus
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                startCarousel();
             }
         });
-        
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
+
+        // Force restart carousel periodically
+        setInterval(() => {
+            if (!slideInterval) {
+                startCarousel();
+            }
+        }, 10000);
+    } else {
+        console.log('Carousel elements not found');
+    }
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCarousel();
+    
+    // === COOKIE CONSENT FUNCTIONALITY ===
+    const cookieBanner = document.getElementById('cookie-consent-banner');
+    const acceptButton = document.getElementById('cookie-consent-accept');
+    const declineButton = document.getElementById('cookie-consent-decline');
+    
+    if (cookieBanner && acceptButton && declineButton) {
+        if (!localStorage.getItem('cookie_consent')) {
+            setTimeout(() => {
+                cookieBanner.classList.remove('hidden');
+                cookieBanner.classList.add('show');
+            }, 1000);
+            
+            acceptButton.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'accepted');
+                cookieBanner.classList.remove('show');
+                setTimeout(() => {
+                    cookieBanner.classList.add('hidden');
+                }, 300);
+            });
+            
+            declineButton.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'declined');
+                cookieBanner.classList.remove('show');
+                setTimeout(() => {
+                    cookieBanner.classList.add('hidden');
+                }, 300);
+            });
+        }
+    }
+});
+
+// === PRELOADER ===
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        setTimeout(() => {
+            preloader.remove();
+        }, 500);
+    }
+    
+    // Reinitialize carousel after page load
+    setTimeout(initializeCarousel, 500);
+});
+
+// === MOBILE MENU TOGGLE ===
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+}
+
+// Smooth scrolling for all links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href') !== '#') {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
-        });
+        }
+    });
+});
 
-        // Animation on scroll
-        const animateElements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+// Scroll to Top Button
+const scrollToTopButton = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopButton.classList.remove('opacity-0', 'invisible');
+        scrollToTopButton.classList.add('opacity-100', 'visible');
+    } else {
+        scrollToTopButton.classList.remove('opacity-100', 'visible');
+        scrollToTopButton.classList.add('opacity-0', 'invisible');
+    }
+});
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Animation on scroll
+const animateElements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+
+const animateOnScroll = () => {
+    animateElements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
         
-        const animateOnScroll = () => {
-            animateElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    if (element.classList.contains('animate-slide-up')) {
-                        element.style.transform = 'translateY(0)';
-                    }
-                }
-            });
-        };
-        
-        // Set initial state
-        animateElements.forEach(element => {
-            element.style.opacity = '0';
+        if (elementPosition < windowHeight - 100) {
+            element.style.opacity = '1';
             if (element.classList.contains('animate-slide-up')) {
-                element.style.transform = 'translateY(30px)';
+                element.style.transform = 'translateY(0)';
             }
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-        
-        // Run once on load
-        animateOnScroll();
-        
-        // Run on scroll
-        window.addEventListener('scroll', animateOnScroll);
+        }
+    });
+};
 
-        // Cookie Consent Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const cookieBanner = document.getElementById('cookie-consent-banner');
-            const acceptButton = document.getElementById('cookie-consent-accept');
-            const declineButton = document.getElementById('cookie-consent-decline');
-            
-            // Check if user has already consented to cookies
-            if (!localStorage.getItem('cookie_consent')) {
-                setTimeout(() => {
-                    cookieBanner.classList.remove('hidden');
-                    cookieBanner.classList.add('show');
-                }, 1000);
-                
-                acceptButton.addEventListener('click', function() {
-                    localStorage.setItem('cookie_consent', 'accepted');
-                    cookieBanner.classList.remove('show');
-                    setTimeout(() => {
-                        cookieBanner.classList.add('hidden');
-                    }, 300);
-                });
-                
-                declineButton.addEventListener('click', function() {
-                    localStorage.setItem('cookie_consent', 'declined');
-                    cookieBanner.classList.remove('show');
-                    setTimeout(() => {
-                        cookieBanner.classList.add('hidden');
-                    }, 300);
-                });
-            }
-        });
+// Set initial state
+animateElements.forEach(element => {
+    element.style.opacity = '0';
+    if (element.classList.contains('animate-slide-up')) {
+        element.style.transform = 'translateY(30px)';
+    }
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+});
 
-        // Modal Functionality
-        const privacyModal = document.getElementById('privacyModal');
-        const termsModal = document.getElementById('termsModal');
-        const privacyLinks = document.querySelectorAll('#privacyPolicyLink, #privacyPolicyLink2, #cookiePolicyLink');
-        const termsLinks = document.querySelectorAll('#termsConditionsLink, #termsConditionsLink2');
-        const closeButtons = document.querySelectorAll('.close-modal');
-        const learnMoreBtn = document.getElementById('learnMoreBtn');
-        
-        // Open Privacy Policy Modal
-        privacyLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                privacyModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Open Terms & Conditions Modal
-        termsLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                termsModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Learn More Button
-        learnMoreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            termsModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // Close Modals
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                privacyModal.style.display = 'none';
-                termsModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Close when clicking outside modal content
-        window.addEventListener('click', function(event) {
-            if (event.target === privacyModal) {
-                privacyModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (event.target === termsModal) {
-                termsModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
+// Run once on load
+animateOnScroll();
 
-        // Contact Form Submission
-        const formSuccess = document.getElementById('formSuccess');
-        const formError = document.getElementById('formError');
-    </script>
+// Run on scroll
+window.addEventListener('scroll', animateOnScroll);
+
+// Modal Functionality
+const privacyModal = document.getElementById('privacyModal');
+const termsModal = document.getElementById('termsModal');
+const privacyLinks = document.querySelectorAll('#privacyPolicyLink, #privacyPolicyLink2, #cookiePolicyLink');
+const termsLinks = document.querySelectorAll('#termsConditionsLink, #termsConditionsLink2');
+const closeButtons = document.querySelectorAll('.close-modal');
+const learnMoreBtn = document.getElementById('learnMoreBtn');
+
+// Open Privacy Policy Modal
+privacyLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        privacyModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Open Terms & Conditions Modal
+termsLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        termsModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Learn More Button
+if (learnMoreBtn) {
+    learnMoreBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        termsModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Close Modals
+closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        privacyModal.style.display = 'none';
+        termsModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+});
+
+// Close when clicking outside modal content
+window.addEventListener('click', function(event) {
+    if (event.target === privacyModal) {
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    if (event.target === termsModal) {
+        termsModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+const formSuccess = document.getElementById('formSuccess');
+const formError = document.getElementById('formError');
+</script>
 </body>
 </html>
